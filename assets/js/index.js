@@ -1,19 +1,23 @@
-$(function () {
+// $(function () {
     // 进入首页发起Ajax请求 获得数据
-    $.ajax({
-        method: "get",
-        url: "/my/userinfo",
-        success: function (res) {
-            if (res.status !== 0) {
-                layui.layer.msg('获取用户数据失败')
-            } else {
-                var username = res.data.nickname || res.data.username
-                // 生成欢迎xxx
-                $('.welcome').html('欢迎&nbsp ' + username)
-                setAvater(res.data, username)
+    function getAvater() {
+        $.ajax({
+            method: "get",
+            url: "/my/userinfo",
+            success: function (res) {
+                if (res.status !== 0) {
+                    layui.layer.msg('获取用户数据失败')
+                } else {
+                    var username = res.data.nickname || res.data.username
+                    // 生成欢迎xxx
+                    $('.welcome').html('欢迎&nbsp ' + username)
+                    setAvater(res.data, username)
+                }
             }
-        }
-    });
+        });
+    }
+    getAvater()
+
     // 退出功能
     $('#btnLogout').on('click', function () {
         // 清空本地储存  跳转login
@@ -33,15 +37,7 @@ $(function () {
 
 
 
-
-
-
-
-
-
-
-
-})
+// })
 // 渲染头像
 function setAvater(user, username) {
     var pic = user.user_pic;
@@ -51,6 +47,6 @@ function setAvater(user, username) {
         $('.layui-nav-img').hide();
     } else {
         $('.text-avater').hide();
-        $('.layui-nav-img').attr(src, pic).show();
+        $('.layui-nav-img').attr('src', pic).show();
     }
 }
