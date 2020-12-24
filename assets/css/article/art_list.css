@@ -1,0 +1,14 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 15px;
+    background-color: #eee;
+}
+#addMask_form,#delMask_form
+ {
+    padding: 20px 30px 0 0;
+}
